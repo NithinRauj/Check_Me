@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:check_me_app/widgets/tasks_list.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -57,6 +58,9 @@ class MainScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.0,
+              ),
               height: 400.0,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -65,6 +69,7 @@ class MainScreen extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
+              child: TasksListWidget(),
             ),
           ),
         ],
