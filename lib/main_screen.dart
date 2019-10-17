@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:check_me_app/widgets/tasks_list.dart';
+import 'add_task_screen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -12,7 +13,10 @@ class MainScreen extends StatelessWidget {
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context, builder: (context) => AddTaskScreen());
+        },
       ),
       body: Column(
         children: <Widget>[
