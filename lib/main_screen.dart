@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:check_me_app/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
-import 'package:check_me_app/models/task.dart';
+import 'package:check_me_app/models/task_data.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -9,12 +10,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy bread')
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +24,10 @@ class _MainScreenState extends State<MainScreen> {
           showModalBottomSheet(
               context: context,
               builder: (context) => AddTaskScreen((newTaskTitle) {
-                    setState(() {
-                      tasks.add(Task(name: newTaskTitle));
-                    });
-                    Navigator.pop(context);
+                    // setState(() {
+                    //   tasks.add(Task(name: newTaskTitle));
+                    // });
+                    // Navigator.pop(context);
                   }));
         },
       ),
@@ -65,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
                 Text(
-                  '${tasks.length} tasks',
+                  '${Provider.of<TaskData>(context).taskCount} tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25.0,
@@ -91,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              child: TasksListWidget(tasks),
+              child: TasksListWidget(),
             ),
           ),
         ],
