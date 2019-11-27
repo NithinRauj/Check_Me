@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:check_me_app/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
+import 'package:check_me_app/models/task.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy bread')
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +27,13 @@ class MainScreen extends StatelessWidget {
         ),
         onPressed: () {
           showModalBottomSheet(
-              context: context, builder: (context) => AddTaskScreen());
+              context: context,
+              builder: (context) => AddTaskScreen((newTaskTitle) {
+                    setState(() {
+                      tasks.add(Task(name: newTaskTitle));
+                    });
+                    Navigator.pop(context);
+                  }));
         },
       ),
       body: Column(
@@ -47,7 +65,7 @@ class MainScreen extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '17 tasks',
+                  '${tasks.length} tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25.0,
@@ -73,7 +91,7 @@ class MainScreen extends StatelessWidget {
                   topRight: Radius.circular(30.0),
                 ),
               ),
-              child: TasksListWidget(),
+              child: TasksListWidget(tasks),
             ),
           ),
         ],
