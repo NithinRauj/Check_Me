@@ -24,10 +24,8 @@ class _MainScreenState extends State<MainScreen> {
           showModalBottomSheet(
               context: context,
               builder: (context) => AddTaskScreen((newTaskTitle) {
-                    // setState(() {
-                    //   tasks.add(Task(name: newTaskTitle));
-                    // });
-                    // Navigator.pop(context);
+                    Provider.of<TaskData>(context).addTask(newTaskTitle);
+                    Navigator.pop(context);
                   }));
         },
       ),

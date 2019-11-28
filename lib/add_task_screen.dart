@@ -67,7 +67,6 @@ class AddTaskScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     addTaskCallback(newTaskTitle);
-                    print(newTaskTitle);
                   },
                 ),
               ],
